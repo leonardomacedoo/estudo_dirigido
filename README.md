@@ -1,2 +1,2 @@
 # estudo_dirigido
-Exercícios de programação
+Aqui estão os exercícios propostos pelo professor Jefferson.
