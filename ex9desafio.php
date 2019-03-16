@@ -2,9 +2,14 @@
 
 print " \n Quantos m² você irá pintar?: ";
  $area = (float) fgets(STDIN);
- $area_ac = $area + $area*0.10;
- $litros = $area / 6;
- $litros_ac = $area_ac / 6;
+
+ $eficiencia_lata = (108);
+ $preco_lata = 80;
+
+ $eficiencia_galao = (21.6);
+ $preco_galao = 25;
+
+ $area_folga = $area * 1.1;
 
 print "\n Qual maneira você deseja comprar as tintas?";
     print "\n 1 - Apenas latas de 18 litros.";
@@ -13,52 +18,39 @@ print "\n Qual maneira você deseja comprar as tintas?";
     
 $decisao = (int) fgets(STDIN);
 
-#Decisão 1
+#Decisão 1 (só latas)
 //-------------------------------------------------------------------------------------------------------------------//
 
 if ($decisao == 1) {
-    
-    if ($litros <= 18){
-        echo "\n Para a área de $area m² será necessário uma lata de 18L que custará 80 reais \n \n";
-    }
 
-    else{
-        $latas = ceil($litros / 18);
-        $preco = $latas * 80;
-        echo "\n Para a área de $area m² será necessário $latas latas de 18L, que custarão $preco reais. \n \n";
-        
-    }
+$latas = ceil($area / $eficiencia_lata);
+$preco_total = $latas * $preco_lata;
+echo "Para uma área de $area será necessário um total de $latas latas, que custarão $preco_total reais. ";
 
 }
 //-------------------------------------------------------------------------------------------------------------------//
 
 
-#Decisão 2
+#Decisão 2 (só galões)
 //-------------------------------------------------------------------------------------------------------------------//
+
 if ($decisao == 2) {
 
-    if($litros <= 3.6) {
-        echo "\n Para a área de $area m² séra necessário um galão de 3,6L que custará 25 reais \n \n";
-    }
+$galoes = ceil($area / $eficiencia_galao);
+$preco_total = $preco_galao * $galoes;
+echo "Para uma área de $area m² será necessário um total de $galoes galões, que custarão $preco_total reais.";
 
-    else {
-        $galoes = ceil($litros / 3.6);
-        $preco = $galoes * 25;
-        echo "\n Para a área de $area m² será necessário $galoes galoes de 3,6L que custarão $preco reais. \n \n";
-
-    }
 }
-
 //-------------------------------------------------------------------------------------------------------------------//
 
 
-#Decisão 3
+#Decisão 3 (latas e galões)
 //-------------------------------------------------------------------------------------------------------------------//
 if ($decisao == 3) {
 
-    $latas = ceil($litros_ac / 18);
-    $resto_latas = $latas%18;
-    $galoes = ceil($resto_latas/3.6);
+    $latas = floor($area_folga / $eficiencia_lata);
+    $resto_latas = $area_folga % $eficiencia_lata;
+    $galoes = ceil($resto_latas / $eficiencia_galao);
     $preco = (($latas * 80 ) + ($galoes * 25 ));
 
     echo "\n Misturando latas de 18L ($latas) e galões de 3,6L ($galoes) você irá gastar $preco reais  ";
@@ -66,4 +58,5 @@ if ($decisao == 3) {
 
 //-------------------------------------------------------------------------------------------------------------------//
 
+    
     
